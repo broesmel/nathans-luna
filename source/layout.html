@@ -10,14 +10,6 @@
 
   <body id="{{ page.permalink }}_page" class="{{ page.category }}">
     <a class="skip-link" href="#main">Skip to main content</a>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1504448526533606&autoLogAppEvents=1';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
     {% if theme.announcement_message_text != blank %}
       <aside role="complementary" aria-label="Announcement message" class="announcement-message">
         <div class="wrapper announcement-message-text">{{ theme.announcement_message_text }}</div>
@@ -30,6 +22,7 @@
       <div class="wrapper">
         <nav class="header-nav" role="navigation" aria-label="Main">
           <ul>
+            <li {% if page.name contains 'Home' %} class="selected" {% endif %}><a href="/">Home</a></li>
             <li{% if page.full_url contains '/products' or page.full_url contains '/product/' or page.full_url contains '/category/' or page.full_url contains '/artist/' %} class="selected"{% endif %}><a href="/products">{{ pages.products.name }}</a></li>
             {% for page in pages.all limit:theme.nav_items %}
               <li{% if page.full_url contains page.url %} class="selected"{% endif %}>{{ page | link_to }}</li>
@@ -44,7 +37,7 @@
         <div class="branding">
           <a href="/" title="Home">
             {% if theme.images.header != blank %}
-              <img class="store-logo" srcset="{{ theme.images.header.url | constrain: 1068, 200 }}, {{ theme.images.header.url | constrain: 2136, 400 }} 2x" src="{{ theme.images.header.url | constrain: 1068, 200 }}" alt="{{ store.name }} Home">
+              <img class="store-logo" srcset="{{ theme.images.header.url | constrain: 1068, 300 }}, {{ theme.images.header.url | constrain: 2136, 600 }} 2x" src="{{ theme.images.header.url | constrain: 1068, 300 }}" alt="{{ store.name }} Home">
             {% else %}
               <div class="store-header">{{ store.name }}</div>
             {% endif %}
@@ -81,6 +74,21 @@
             <div class="custom-page-content">{{ page_content | paragraphs }}</div>
           </div>
         {% else %}
+          {% if theme.max_products_per_row == 4 %}
+            {% assign product_image_constrain_width = 255 %}
+            {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
+          {% elsif theme.max_products_per_row == 3 %}
+            {% assign product_image_constrain_width = 346 %}
+            {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
+          {% elsif theme.max_products_per_row == 2 %}
+            {% assign product_image_constrain_width = 20 %}
+            {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
+          {% elsif theme.max_products_per_row == 1 %}
+            {% assign product_image_constrain_width = 1068 %}
+            {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
+          {% endif %}
+          {% assign thumb_constrain_width = 30 %}
+          {% assign thumb_constrain_height = 30 %}
           {{ page_content }}
         {% endif %}
       </div>
