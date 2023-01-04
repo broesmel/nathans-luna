@@ -5,4 +5,4 @@
     - [x] falls 2x1 nicht geht: gleich wie shop
     - [x] falls bilder einsetzen zu muehsam: homepage nur die slideshow in groesser
   - [x] ohne titel und ohne preis
-  - [ ] www auf * umleiten
+  - [x] www auf * umleiten
