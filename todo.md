@@ -1,8 +1,8 @@
 # todo
 - homepage
-  - [ ] bilder aus der slideshow für die homepage
-  - [ ] ideal: entweder zwei quadrate oder 2x1
-    - [ ] falls 2x1 nicht geht: gleich wie shop
-    - [ ] falls bilder einsetzen zu muehsam: homepage nur die slideshow in groesser
-  - [ ] ohne titel und ohne preis
+  - [x] bilder aus der slideshow für die homepage
+  - [x] ideal: entweder zwei quadrate oder 2x1
+    - [x] falls 2x1 nicht geht: gleich wie shop
+    - [x] falls bilder einsetzen zu muehsam: homepage nur die slideshow in groesser
+  - [x] ohne titel und ohne preis
   - [ ] www auf * umleiten

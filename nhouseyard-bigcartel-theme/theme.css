@@ -734,6 +734,12 @@
    padding: 8px 16px;
    text-decoration: none;
  }
+ .footer-nav ul li a {
+  color: {{ theme.secondary_text_color }};
+ }
+ .footer-nav ul li.selected a {
+  color: {{ theme.primary_text_color }};
+ }
  .footer-nav ul a:hover, .footer-nav ul a:focus {
    color: {{ theme.link_rollover_color }};
    text-decoration: underline;

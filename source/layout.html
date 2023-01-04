@@ -46,6 +46,7 @@
       </div>
       <nav class="header-nav mobile-nav" aria-label="Mobile Main" role="navigation">
         <ul>
+          <li {% if page.name contains 'Home' %} class="selected" {% endif %}><a href="/">Home</a></li>
           <li{% if page.full_url contains '/products' or page.full_url contains '/product/' or page.full_url contains '/category/' or page.full_url contains '/artist/' %} class="selected"{% endif %}>
             <a href="/products">{{ pages.products.name }}</a>
           </li>
@@ -81,7 +82,7 @@
             {% assign product_image_constrain_width = 346 %}
             {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
           {% elsif theme.max_products_per_row == 2 %}
-            {% assign product_image_constrain_width = 20 %}
+            {% assign product_image_constrain_width = 526 %}
             {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
           {% elsif theme.max_products_per_row == 1 %}
             {% assign product_image_constrain_width = 1068 %}
@@ -211,13 +212,15 @@
       <div class="wrapper">
         <nav class="footer-nav" id="footer" role="navigation" aria-label="Footer">
           <ul class="footer-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/products">{{ pages.products.name }}</a></li>
-            {% for page in pages.all %}
-              <li>{{ page | link_to }}</li>
+            <li {% if page.name contains 'Home' %} class="selected" {% endif %}><a href="/">Home</a></li>
+            <li{% if page.full_url contains '/products' or page.full_url contains '/product/' or page.full_url contains '/category/' or page.full_url contains '/artist/' %} class="selected"{% endif %}><a href="/products">{{ pages.products.name }}</a></li>
+            {% for page in pages.all limit:theme.nav_items %}
+              <li{% if page.full_url contains page.url %} class="selected"{% endif %}>{{ page | link_to }}</li>
             {% endfor %}
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/cart">Cart</a></li>
+            <li{% if page.full_url contains '/contact' %} class="selected"{% endif %}><a href="/contact">Contact</a></li>
+            <li{% if page.full_url contains '/cart' %} class="selected"{% endif %}>
+              <a href="/cart">Cart (<span class="cart-num-items">{{ cart.item_count }}</span>)</a>
+            </li>
             {% if theme.show_search %}
               <li>
                 <form class="search-form" name="search" action="/products" method="get" accept-charset="utf8">
