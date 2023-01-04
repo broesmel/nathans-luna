@@ -19,6 +19,14 @@
       </aside>
     {% endif %}
     <header>
+      <style>
+        .store-logo {
+          max-height: unset;
+        }
+        .branding {
+          margin: 5px auto;
+        }
+      </style>
       <div class="wrapper">
         <nav class="header-nav" role="navigation" aria-label="Main">
           <ul>
@@ -209,6 +217,14 @@
       </aside>
     {% endif %}
     <footer>
+      <style>
+        .footer-nav ul li a {
+          color: {{ theme.secondary_text_color }};
+         }
+         .footer-nav ul li.selected a {
+          color: {{ theme.primary_text_color }};
+         }
+      </style>
       <div class="wrapper">
         <nav class="footer-nav" id="footer" role="navigation" aria-label="Footer">
           <ul class="footer-links">
