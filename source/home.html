@@ -3,18 +3,17 @@
     display: grid;
     justify-items: center;
     grid-template-columns: {% for i in (1..theme.max_products_per_row) %} {{100 | divided_by: theme.max_products_per_row}}% {% endfor %};
-    gap: 8px;
+    gap: 10px 12px;
   }
   @media only screen and (max-width: 767px) {
     .grid-container {
       grid-template-columns: {% for i in (1..theme.max_products_per_row_mobile) %} {{100 | divided_by: theme.max_products_per_row_mobile}}% {% endfor %};
-
     }
   }
   .grid-item {
     /* border: solid; */
   }
-  @media only screen and (min-width: 767px) {
+  @media only screen and (min-width: 768px) {
     div.image-tall {
       {% if theme.featured_items > 0 %}
       grid-row: auto / span {{theme.featured_items}} !important;
@@ -68,18 +67,25 @@
           {% assign image_class = image_class | replace: ' ', ''  | strip_newlines %}
             <div class="grid-item {{image_class}} image-wrapper">
               {% if image_class == 'image-wide' %}
-                {% assign image_constrain_width = '4096' %}
+                {% assign image_constrain_width = '2048' %}
                 {% assign image_constrain_width_large = image_constrain_width | times: 2 %}
                 {% assign image_constrain_height = '-' %}
                 {% assign image_constrain_height_large = '-' %}
               {% elsif image_class == 'image-tall' %}
                 {% assign image_constrain_width = '-' %}
                 {% assign image_constrain_width_large = '-' %}
-                {% assign image_constrain_height = '4096' %}
+                {% assign image_constrain_height = '2048' %}
                 {% assign image_constrain_height_large = image_constrain_height | times: 2 %}
               {% else %}
               {% endif %}
-              <img alt="{{image}}" class="lazy {{image_class}}" src="{{ image.url | constrain: thumb_constrain_width,thumb_constrain_height }}" data-src="{{ image.url | constrain: image_constrain_width, image_constrain_height }}" data-srcset="{{ image.url | constrain: image_constrain_width_large, image_constrain_height_large }} 2x, {{ image.url |constrain: image_constrain_width, image_constrain_height }} 1x">
+              <img alt="{{image}}" class="{{image_class}}" 
+              loading="lazy" 
+              src="{{ image.url | constrain: image_constrain_width, image_constrain_height }}"
+              sizes="(max-width: 767px) {{image_constrain_width}},
+                     (min-width: 768px) {{image_constrain_width_large}}"
+              srcset="{{ image.url | constrain: image_constrain_width, image_constrain_height }},
+                     {{ image.url | constrain: image_constrain_width_large, image_constrain_height_large }}"
+              >
             </div>
 
         {% endfor %}

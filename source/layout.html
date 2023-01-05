@@ -90,10 +90,10 @@
             {% assign product_image_constrain_width = 512 %}
             {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
           {% elsif theme.max_products_per_row == 2 %}
-            {% assign product_image_constrain_width = 1024 %}
+            {% assign product_image_constrain_width = 768 %}
             {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
           {% elsif theme.max_products_per_row == 1 %}
-            {% assign product_image_constrain_width = 2048 %}
+            {% assign product_image_constrain_width = 1024 %}
             {% assign product_image_constrain_width_large = product_image_constrain_width | times: 2 %}
           {% endif %}
           {% assign thumb_constrain_width = 30 %}
