@@ -30,20 +30,20 @@
       <div class="wrapper">
         <nav class="header-nav" role="navigation" aria-label="Main">
           <ul>
-            <li {% if page.name contains 'Home' %} class="selected" {% endif %}><a href="/">Home</a></li>
+            <li {% if page.name contains 'Home' %} class="selected" {% endif %}><a href="/">{{ pages.home.name }}</a></li>
             <li{% if page.full_url contains '/products' or page.full_url contains '/product/' or page.full_url contains '/category/' or page.full_url contains '/artist/' %} class="selected"{% endif %}><a href="/products">{{ pages.products.name }}</a></li>
             {% for page in pages.all limit:theme.nav_items %}
               <li{% if page.full_url contains page.url %} class="selected"{% endif %}>{{ page | link_to }}</li>
             {% endfor %}
-            <li{% if page.full_url contains '/contact' %} class="selected"{% endif %}><a href="/contact">Contact</a></li>
+            <li{% if page.full_url contains '/contact' %} class="selected"{% endif %}><a href="/contact">{{ pages.contact.name }}</a></li>
             <li{% if page.full_url contains '/cart' %} class="selected"{% endif %}>
-              <a href="/cart">Cart (<span class="cart-num-items">{{ cart.item_count }}</span>)</a>
+              <a href="/cart">{{ pages.cart.name }} (<span class="cart-num-items">{{ cart.item_count }}</span>)</a>
             </li>
           </ul>
         </nav>
 
         <div class="branding">
-          <a href="/" title="Home">
+          <a href="/" title="{{ pages.home.name }}">
             {% if theme.images.header != blank %}
               <img class="store-logo" srcset="{{ theme.images.header.url | constrain: 1068, 300 }}, {{ theme.images.header.url | constrain: 2136, 600 }} 2x" src="{{ theme.images.header.url | constrain: 1068, 300 }}" alt="{{ store.name }} Home">
             {% else %}
