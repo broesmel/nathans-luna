@@ -1,3 +1,11 @@
+<style>
+  /* fixes bug rule that does not respect mobile or desktop sizing in theme*/
+  @media screen and (max-width: 1023px) {
+    .product-list-thumb {
+      width: calc(100% / {{theme.max_products_per_row_mobile}});
+    }
+  }
+</style>
 {% if theme.max_products_per_row == 4 %}
   {% assign product_image_constrain_width = 255 %}
   {% assign product_image_constrain_height = 255 %}
